@@ -1,0 +1,16 @@
+@use 'styles/variables' as var;
+
+a{
+  color: inherit;
+  text-decoration: none;
+
+  &.nav-link-small{
+    font-size: 1.2rem;
+  }
+  &.nav-link-medium{
+    font-size: 1.8rem;
+  }
+  &.nav-link-large{
+    font-size: 2.4rem;
+  }
+}
