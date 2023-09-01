@@ -1,0 +1,25 @@
+@use 'styles/variables' as var;
+
+
+header{
+  padding: var.$layout-default-padding 0;
+  border:1px solid #232323;
+
+  h1{
+    font-size: 3rem;
+    text-align: center;
+  }
+
+  nav{
+    color: var.$body-bg-color;
+    background: var.$basic-color;
+    padding: var.$layout-default-padding var.$layout-default-padding / 2;
+    display: flex;
+    align-items: center;
+    justify-content: start;
+  }
+
+  h1 + nav{
+    margin-top: var.$layout-default-padding;
+  }
+}
