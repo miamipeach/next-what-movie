@@ -1,0 +1,12 @@
+@font-face {
+    font-family: "NotoSansKR";
+    src: url("https://fonts.cdnfonts.com/s/15794/NotoSans-Regular.woff") format("woff");
+    font-style: normal;
+}
+
+@font-face {
+    font-family: "NotoSansKR";
+    src: url("https://fonts.cdnfonts.com/s/14884/OpenSans-Regular.woff") format("woff");
+    unicode-range: U+0020-007E;
+    font-style: normal;
+}
