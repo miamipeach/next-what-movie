@@ -1,0 +1,23 @@
+@use "variables" as var;
+@use './reset.css';
+@use './font.css';
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+html{
+  font-size: 10px;
+}
+
+body{
+  font-family: var.$font-family;
+  color: var.$basic-color;
+  background: var.$body-bg-color;
+}
+
+#wrap{
+  width: 100%;
+  max-width: 128rem;
+  margin:0 auto;
+}
