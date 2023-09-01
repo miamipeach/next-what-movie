@@ -1,13 +1,12 @@
-import {Meta, StoryObj} from '@storybook/react';
+import { Meta, StoryObj } from '@storybook/react';
 import Header from '.';
 
 const meta: Meta<typeof Header> = {
   title: 'Header',
   component: Header,
   parameters: {
-    layout: 'centered',
+    layout: 'fullscreen',
   },
-  tags: ['fullscreen'],
 };
 
 export default meta;

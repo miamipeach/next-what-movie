@@ -1,6 +1,8 @@
 import '../styles/globals.scss';
 import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
+import Header from '@/components/Header';
+import React from 'react';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -13,7 +15,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en">
       <body className={inter.className}>
-        <div id={'wrap'}>{children}</div>
+        <div id={'wrap'}>
+          <Header />
+          {children}
+        </div>
       </body>
     </html>
   );
