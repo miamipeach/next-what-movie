@@ -3,6 +3,7 @@ import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
 import Header from '@/components/Header';
 import React from 'react';
+import Providers from '@/utils/provider';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -15,10 +16,12 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en">
       <body className={inter.className}>
-        <div id={'wrap'}>
-          <Header />
-          {children}
-        </div>
+        <Providers>
+          <div id={'wrap'}>
+            <Header />
+            {children}
+          </div>
+        </Providers>
       </body>
     </html>
   );
