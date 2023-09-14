@@ -17,10 +17,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html lang="en">
       <body className={inter.className}>
         <Providers>
-          <div id={'wrap'}>
-            <Header />
-            {children}
-          </div>
+          <div id={'wrap'}>{children}</div>
         </Providers>
       </body>
     </html>

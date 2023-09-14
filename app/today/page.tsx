@@ -20,7 +20,8 @@ async function getTodayMovie() {
 export default function Today() {
   const { data } = useQuery<getTodayMovieEntity>({
     queryKey: ['get-today-movie'],
-    queryFn: () => getTodayMovie(),
+    queryFn: getTodayMovie,
+    cacheTime: 43200000,
   });
 
   return (
