@@ -1,8 +1,10 @@
 {
   "extends": [
+    "next",
     "next/core-web-vitals",
     "plugin:storybook/recommended",
     "prettier",
+    "eslint:recommended",
     "plugin:@typescript-eslint/recommended",
     "plugin:@typescript-eslint/recommended-requiring-type-checking"
   ],
@@ -14,6 +16,8 @@
         "allowedInvalidRoles": ["text"],
         "ignoreNonDOM": true
       }
-    ]
+    ],
+    "react/no-unescaped-entities": "off",
+    "@next/next/no-page-custom-font": "off"
   }
 }
