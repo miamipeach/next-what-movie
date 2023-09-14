@@ -1,0 +1,35 @@
+@use 'variables';
+
+@mixin animation($keyFrame, $delay: 3.3s, $duration: 0.5s, $direction: linear, $fill: forwards) {
+  animation: $duration $keyFrame $delay $direction $fill;
+}
+
+@mixin animation-twice($animation1, $animation2) {
+  animation: $animation1, $animation2;
+}
+
+@mixin small-mobile {
+  @media (all and max-width: #{variables.$breakpoint-small-mobile} ) {
+    @content;
+  }
+}
+
+@mixin flex(
+  $justify-content: center,
+  $align-items: center,
+  $flex-direction: column,
+  $display: flex
+) {
+  display: $display;
+  justify-content: $justify-content;
+  align-items: $align-items;
+  flex-direction: $flex-direction;
+}
+
+@mixin position($type: relative, $top: 0, $left: 0, $bottom: initial, $right: initial) {
+  position: $type;
+  top: $top;
+  left: $left;
+  bottom: $bottom;
+  right: $right;
+}

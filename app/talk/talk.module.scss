@@ -1,0 +1,117 @@
+@use 'styles/variables';
+@use 'styles/mixin';
+@use 'styles/animation';
+
+%title-position {
+  content: '';
+  display: block;
+  position: absolute;
+  top: 0;
+  width: 50%;
+  height: 100%;
+  background: variables.$basic-color;
+}
+
+.phoneBox {
+  width: 90%;
+  height: 80vh;
+  max-width: 90rem;
+  border-radius: 4rem;
+  border: 4px solid #232323;
+  margin: 0 auto;
+  background: #f1f1f1;
+  position: relative;
+  padding: 2rem;
+
+  &::after {
+    @extend %after-content;
+    @include mixin.position(absolute, 0, 50%);
+
+    width: 20%;
+    min-width: 10rem;
+    height: 1.5rem;
+    border-bottom-left-radius: 3rem;
+    border-bottom-right-radius: 3rem;
+    background: #232323;
+    transform: translateX(-50%);
+  }
+}
+
+.talkTitle {
+  @extend %fixed;
+
+  width: 100vw;
+  height: 100vh;
+  text-align: center;
+
+  @include mixin.flex;
+
+  color: variables.$body-bg-color;
+  text-shadow: 2px 2px 2px gray;
+  font-size: 5rem;
+
+  @include mixin.animation(display-none, 3s, 0.1s);
+
+  &::before {
+    @extend %title-position;
+    @include mixin.animation(left-hide, 2s, 1s, ease-in-out);
+
+    left: 0;
+  }
+
+  &::after {
+    @extend %title-position;
+    @include mixin.animation(right-hide, 2s, 1s, ease-in-out);
+
+    right: 0;
+  }
+
+  h1 {
+    @include mixin.animation-twice(
+      slide-down 0.5s cubic-bezier(0.79, -0.25, 0.45, 1.5) forwards,
+      hide 0.75s 2s linear forwards
+    );
+
+    position: relative;
+    z-index: 1;
+  }
+}
+
+.talkLayout {
+  @include mixin.flex;
+
+  height: 100vh;
+}
+
+.talker {
+  font-size: 4rem;
+  padding-top: 0.5rem;
+}
+
+.talkBubbleBoxLeft {
+  @include mixin.flex(flex-start, flex-start, row);
+}
+
+.talkBubbleBoxRight {
+  @include mixin.flex(flex-start, flex-start, row);
+
+  flex-flow: row-reverse;
+}
+
+.talkBubbleBox + .talkBubbleBox {
+  margin-top: 1rem;
+}
+
+.talkBubbleRight {
+  @extend %bubble;
+  @extend %bubble-right;
+
+  margin-right: 1rem;
+}
+
+.talkBubbleLeft {
+  @extend %bubble;
+  @extend %bubble-left;
+
+  margin-left: 1rem;
+}

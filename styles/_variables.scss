@@ -1,0 +1,59 @@
+$font-family: notosanskr, sans-serif;
+$basic-color: #232323;
+$body-bg-color: #fff;
+$layout-default-padding: 2rem;
+$breakpoint-small-mobile: 380px;
+$bubble-bg-color: #ffc107;
+
+@media (prefers-color-scheme: dark) {
+  $basic-color: #fff;
+  $body-bg-color: #232323;
+}
+
+%fixed {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 100;
+}
+
+%bubble {
+  width: auto;
+  padding: 1rem 2rem;
+  font-size: 1.4rem;
+  line-height: 1.5;
+  background: $bubble-bg-color;
+  color: $basic-color;
+  border-radius: 2rem;
+  position: relative;
+  max-width: 80%;
+}
+
+%after-content {
+  content: '';
+  display: block;
+}
+
+%bubble-after {
+  width: 2rem;
+  height: 2rem;
+  position: absolute;
+  top: 0.5rem;
+  background: transparent;
+  border-radius: 50%;
+  box-shadow: 0 1rem 0 0 $bubble-bg-color;
+}
+
+%bubble-right::after {
+  @extend %after-content;
+  @extend %bubble-after;
+
+  right: -0.7rem;
+}
+
+%bubble-left::after {
+  @extend %after-content;
+  @extend %bubble-after;
+
+  left: -0.7rem;
+}

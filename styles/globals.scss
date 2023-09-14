@@ -1,9 +1,7 @@
-@use "variables" as var;
+@use "variables";
+@use "mixin";
 @use './reset.css';
 @use './font.css';
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
 
 
 html{
@@ -11,13 +9,20 @@ html{
 }
 
 body{
-  font-family: var.$font-family;
-  color: var.$basic-color;
-  background: var.$body-bg-color;
+  font-family: variables.$font-family;
+  color: variables.$basic-color;
+  background: variables.$body-bg-color;
 }
 
 #wrap{
   width: 100%;
   max-width: 128rem;
   margin:0 auto;
+}
+
+
+@include mixin.small-mobile{
+  html {
+    font-size: 8px;
+  }
 }

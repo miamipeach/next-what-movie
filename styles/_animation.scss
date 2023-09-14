@@ -1,0 +1,55 @@
+@keyframes extend-width {
+  0% {
+    width: 0;
+  }
+
+  100% {
+    width: 100%;
+  }
+}
+
+@keyframes slide-down {
+  0% {
+    transform: translateY(-100vh);
+  }
+
+  100% {
+    transform: translateY(0);
+  }
+}
+
+@keyframes hide {
+  0% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0;
+    display: none;
+  }
+}
+
+@keyframes display-none {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 0;
+    display: none;
+  }
+}
+
+@keyframes left-hide {
+  100% {
+    left: -100%;
+    display: none;
+  }
+}
+
+@keyframes right-hide {
+  100% {
+    right: -100%;
+    display: none;
+  }
+}
