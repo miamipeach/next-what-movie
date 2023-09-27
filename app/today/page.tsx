@@ -1,32 +1,24 @@
-'use client';
-
 import PostList from '@/components/PostList';
-import { useQuery } from '@tanstack/react-query';
-import { getTodayMovieEntity } from '@/type/data/getTodayMovieEntity';
+import { dehydrate, Hydrate } from '@tanstack/react-query';
+import getQueryClient from '@/utils/getQueryClient';
+import React from 'react';
+import { getTodayMovieList } from '@/app/today/getMovieList';
 
-async function getTodayMovie() {
-  const url = `${
-    process.env.NEXT_PUBLIC_API_BASE_URL as string
-  }boxoffice/searchDailyBoxOfficeList.json?key=${
-    process.env.NEXT_PUBLIC_API_KEY
-  }&targetDt=20230902`;
-
-  const res = await fetch(url);
-  const movie = await res.json();
-
-  return movie;
-}
-
-export default function Today() {
-  const { data } = useQuery<getTodayMovieEntity>({
+export default async function Today() {
+  const queryClient = getQueryClient();
+  await queryClient.prefetchQuery({
     queryKey: ['get-today-movie'],
-    queryFn: getTodayMovie,
+    queryFn: getTodayMovieList,
     cacheTime: 43200000,
   });
 
+  const dehydratedState = dehydrate(queryClient);
+
   return (
-    <section>
-      <PostList movieList={data?.boxOfficeResult.dailyBoxOfficeList || []} />
-    </section>
+    <Hydrate state={dehydratedState}>
+      <section>
+        <PostList />
+      </section>
+    </Hydrate>
   );
 }

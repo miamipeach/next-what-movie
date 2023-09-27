@@ -1,4 +1,3 @@
-import Image from 'next/image';
 import { Movie } from '@/type/Movie';
 
 interface IProps {

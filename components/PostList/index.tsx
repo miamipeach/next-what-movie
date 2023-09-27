@@ -1,11 +1,15 @@
+'use client';
+
 import Post from '@/components/Post';
-import { Movie } from '@/type/Movie';
+import { useQuery } from '@tanstack/react-query';
+import { getTodayMovieList } from '@/app/today/getMovieList';
 
-interface IProps {
-  movieList: Movie[];
-}
+export default function PostList() {
+  const { data: movieList } = useQuery({
+    queryKey: ['get-today-movie'],
+    queryFn: getTodayMovieList,
+  });
 
-export default function PostList({ movieList }: IProps) {
   return (
     <section>
       <ol>
