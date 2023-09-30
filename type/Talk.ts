@@ -1,5 +1,5 @@
 export type TalkType = {
-  id: number;
+  boxId: number;
   direction: string;
   msg: string;
 };

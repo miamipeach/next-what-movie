@@ -11,7 +11,7 @@ export default function SceneBox({ sceneNumber }: IProps) {
   return (
     <>
       {talkMsg.getSceneMsg(sceneNumber).map((talk) => (
-        <TalkBubble talkInfo={talk} key={`talk_scene_${talk.id}`} />
+        <TalkBubble talkInfo={talk} key={`talk_scene_${talk.boxId}`} />
       ))}
     </>
   );

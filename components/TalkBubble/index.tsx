@@ -1,10 +1,8 @@
 import styles from '@/app/talk/talk.module.scss';
+import { TalkType } from '@/type/Talk';
 
 interface IProps {
-  talkInfo: {
-    direction: string;
-    msg: string;
-  };
+  talkInfo: TalkType;
 }
 
 export default function TalkBubble({ talkInfo }: IProps) {

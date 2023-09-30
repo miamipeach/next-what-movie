@@ -1,6 +1,7 @@
 @use 'styles/variables';
 @use 'styles/mixin';
 @use 'styles/animation';
+@use 'styles/function';
 
 %title-position {
   content: '';
@@ -11,6 +12,8 @@
   height: 100%;
   background: variables.$basic-color;
 }
+
+$doorAnimationTime : 3;
 
 .phoneBox {
   @include mixin.position;
@@ -23,6 +26,7 @@
   margin: 0 auto;
   background: #f1f1f1;
   padding: 2rem;
+  overflow-x:hidden;
 
   &::after {
     @extend %after-content;
@@ -51,7 +55,7 @@
   text-shadow: 2px 2px 2px gray;
   font-size: 5rem;
 
-  @include mixin.animation(display-none, 3s, 0.1s);
+  @include mixin.animation(display-none, #{doorAnimationTime}s, 0.1s);
 
   &::before {
     @extend %title-position;
@@ -80,7 +84,6 @@
 
 .talkLayout {
   @include mixin.flex;
-
   height: 100vh;
 }
 
@@ -91,11 +94,12 @@
 
 .talkBubbleBoxLeft {
   @include mixin.flex(flex-start, flex-start, row);
+  @include mixin.animation(left-show, #{function.sceneAnimation()}s, 0.5s, linear, both );
 }
 
 .talkBubbleBoxRight {
   @include mixin.flex(flex-start, flex-start, row);
-
+  @include mixin.animation(right-show, #{function.sceneAnimation()}s, 0.5s, linear, both);
   flex-flow: row-reverse;
 }
 
@@ -115,4 +119,15 @@
   @extend %bubble-left;
 
   margin-left: 1rem;
+}
+
+
+.firstScene{
+  $n : 4;
+
+  @for $i from 1 through $n{
+    .talkBubbleBox:nth-child(#{$i}){
+      animation-delay: 3s + (0.5 * $i);
+    }
+  }
 }

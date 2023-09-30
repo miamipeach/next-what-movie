@@ -1,0 +1,3 @@
+@function sceneAnimation($mainAnimation : 3){
+  @return $mainAnimation + 0.5;
+}

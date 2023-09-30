@@ -1,7 +1,7 @@
 @use 'variables';
 
-@mixin animation($keyFrame, $delay: 3.3s, $duration: 0.5s, $direction: linear, $fill: forwards) {
-  animation: $duration $keyFrame $delay $direction $fill;
+@mixin animation($keyFrame, $delay: 0s, $duration: 0.5s, $direction: linear, $fill: forwards) {
+  animation: $keyFrame $duration $delay $direction $fill;
 }
 
 @mixin animation-twice($animation1, $animation2) {

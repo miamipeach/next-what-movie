@@ -1,44 +1,22 @@
 [
   [
     {
-      "id" : 1,
+      "boxId" : 1,
       "direction" : "left",
       "msg" : "심심한데... 영화 보러 갈까?"
     },
     {
-      "id" : 2,
+      "boxId" : 2,
       "direction" : "right",
       "msg" : "영화? 뭐 보고 싶은거 있어?"
     },
     {
-      "id" : 3,
+      "boxId" : 3,
       "direction" : "left",
       "msg" : "딱 보고싶은건 없는데...\uD83D\uDE44"
     },
     {
-      "id" : 4,
-      "direction" : "left",
-      "msg" : "잠깐만~ 뭐하는지 찾아볼께"
-    }
-  ],
-  [
-    {
-      "id" : 1,
-      "direction" : "left",
-      "msg" : "심심한데... 영화 보러 갈까?"
-    },
-    {
-      "id" : 2,
-      "direction" : "right",
-      "msg" : "영화? 뭐 보고 싶은거 있어?"
-    },
-    {
-      "id" : 3,
-      "direction" : "left",
-      "msg" : "딱 보고싶은건 없는데...\uD83D\uDE44"
-    },
-    {
-      "id" : 4,
+      "boxId" : 4,
       "direction" : "left",
       "msg" : "잠깐만~ 뭐하는지 찾아볼께"
     }
