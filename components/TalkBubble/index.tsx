@@ -1,11 +1,13 @@
 import styles from '@/app/talk/talk.module.scss';
 import { TalkType } from '@/type/Talk';
+import React from 'react';
 
 interface IProps {
   talkInfo: TalkType;
+  children?: React.ReactNode;
 }
 
-export default function TalkBubble({ talkInfo }: IProps) {
+export default function TalkBubble({ talkInfo, children }: IProps) {
   return (
     <div
       className={`${
@@ -18,7 +20,7 @@ export default function TalkBubble({ talkInfo }: IProps) {
           talkInfo.direction === 'left' ? styles.talkBubbleLeft : styles.talkBubbleRight
         }`}
       >
-        {talkInfo.msg}
+        {!!talkInfo.msg && typeof talkInfo.msg === 'string' ? talkInfo.msg : children}
       </div>
     </div>
   );

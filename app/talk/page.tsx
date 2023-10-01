@@ -1,11 +1,11 @@
-import TalkHeader from '@/app/talk/components/TalkHeader';
-import TalkMain from '@/app/talk/components/TalkMain';
+import Header from '@/app/talk/components/Header';
+import Main from '@/app/talk/components/Main';
 
 export default function Talk() {
   return (
     <>
-      <TalkHeader />
-      <TalkMain />
+      <Header />
+      <Main />
     </>
   );
 }

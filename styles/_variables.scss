@@ -4,6 +4,8 @@ $body-bg-color: #fff;
 $layout-default-padding: 2rem;
 $breakpoint-small-mobile: 380px;
 $bubble-bg-color: #ffc107;
+$button-bg-color: #f1f1f1;
+$bubble-border-radius : 2rem;
 
 @media (prefers-color-scheme: dark) {
   $basic-color: #fff;
@@ -24,7 +26,7 @@ $bubble-bg-color: #ffc107;
   line-height: 1.5;
   background: $bubble-bg-color;
   color: $basic-color;
-  border-radius: 2rem;
+  border-radius: $bubble-border-radius;
   position: relative;
   max-width: 80%;
 }

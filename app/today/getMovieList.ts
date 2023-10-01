@@ -1,4 +1,5 @@
 import { Movie } from '@/type/Movie';
+import { getYesterdayDate } from '@/utils/common';
 
 interface TodayMovieList {
   boxOfficeResult: {
@@ -11,7 +12,7 @@ export async function getTodayMovieList(): Promise<Movie[]> {
     process.env.NEXT_PUBLIC_API_BASE_URL as string
   }boxoffice/searchDailyBoxOfficeList.json?key=${
     process.env.NEXT_PUBLIC_API_KEY
-  }&targetDt=20230902`;
+  }&targetDt=${getYesterdayDate()}`;
 
   const res = await fetch(url);
   const result = (await res.json()) as TodayMovieList;

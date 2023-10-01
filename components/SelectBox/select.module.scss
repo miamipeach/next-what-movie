@@ -1,0 +1,18 @@
+@use 'styles/variables';
+
+.selectButton {
+  font-size: 1.5rem;
+  text-align: center;
+  padding: variables.$layout-default-padding / 2;
+  display: block;
+  border:none;
+  background: variables.$button-bg-color;
+  color: variables.$basic-color;
+  width:100%;
+  max-width: 50rem;
+  border-radius: variables.$bubble-border-radius / 2;
+}
+
+.selectButton + .selectButton{
+  margin-top:0.5rem;
+}

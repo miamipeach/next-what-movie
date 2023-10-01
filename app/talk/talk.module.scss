@@ -13,7 +13,7 @@
   background: variables.$basic-color;
 }
 
-$doorAnimationTime : 3;
+$intro-animation-delay-time : 3;
 
 .phoneBox {
   @include mixin.position;
@@ -55,7 +55,7 @@ $doorAnimationTime : 3;
   text-shadow: 2px 2px 2px gray;
   font-size: 5rem;
 
-  @include mixin.animation(display-none, #{doorAnimationTime}s, 0.1s);
+  @include mixin.animation(display-none, #{$intro-animation-delay-time + 's'}, 0.1s);
 
   &::before {
     @extend %title-position;
@@ -121,9 +121,17 @@ $doorAnimationTime : 3;
   margin-left: 1rem;
 }
 
+.talkBubbleBoxLeft + .talkBubbleBoxLeft{
+  .talker{
+    display: none;
+  }
+  .talkBubbleLeft{
+    margin-left:5rem;
+  }
+}
 
 .firstScene{
-  $n : 4;
+  $n : 5;
 
   @for $i from 1 through $n{
     .talkBubbleBox:nth-child(#{$i}){

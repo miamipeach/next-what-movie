@@ -5,7 +5,7 @@ interface IProps {
   sceneNumber: number;
 }
 
-export default function SceneBox({ sceneNumber }: IProps) {
+export default function TalkBox({ sceneNumber }: IProps) {
   const talkMsg = new TalkAnimation();
 
   return (

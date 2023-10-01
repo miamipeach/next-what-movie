@@ -11,4 +11,8 @@ export class TalkAnimation {
   getSceneMsg(sceneNumber: number) {
     return talkData[sceneNumber] || [];
   }
+
+  getSceneListMsg(sceneNumber: number) {
+    return this.getSceneMsg(sceneNumber)[this.getSceneMsg(sceneNumber).length - 1];
+  }
 }
