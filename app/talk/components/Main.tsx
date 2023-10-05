@@ -1,7 +1,7 @@
 import styles from '@/app/talk/talk.module.scss';
 import TalkBox from '@/components/TalkBox';
-import TodayMovieSelect from '@/app/talk/components/todayMovie/TodayMovieSelect';
 import { Suspense } from 'react';
+import TodayMoviePreLoad from '@/app/talk/components/todayMovie/TodayMoviePreLoad';
 
 export default function Main() {
   return (
@@ -9,7 +9,7 @@ export default function Main() {
       <section className={`${styles.phoneBox} ${styles.firstScene}`}>
         <TalkBox sceneNumber={0} />
         <Suspense fallback={<>loading</>}>
-          <TodayMovieSelect />
+          <TodayMoviePreLoad />
         </Suspense>
       </section>
     </main>

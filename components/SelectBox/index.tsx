@@ -1,27 +1,29 @@
 import TalkBubble from '@components/TalkBubble';
 import { TalkType } from '@/type/Talk';
 import React from 'react';
-import { Movie } from '@/type/Movie';
 import styles from './select.module.scss';
+import { Button } from '@/type/Button';
 
 interface IProps {
   talkInfo: TalkType;
-  selectInfo: Movie[];
+  selectInfo: Button[];
   index: number;
+  onClickEvent: (value: string) => Promise<void>;
 }
 
-export default function SelectBox({ talkInfo, selectInfo, index }: IProps) {
+export default function SelectBox({ talkInfo, selectInfo, index, onClickEvent }: IProps) {
   return (
     <TalkBubble talkInfo={talkInfo} index={index}>
-      {selectInfo
-        .sort((s1, s2) => {
-          return parseInt(s1.rank) - parseInt(s2.rank);
-        })
-        .map((s) => (
-          <button key={`${s.movieCd}`} className={styles.selectButton}>
-            {s.movieNm}
-          </button>
-        ))}
+      {selectInfo.map((s) => (
+        <button
+          value={`${s.value}`}
+          className={styles.selectButton}
+          onClick={() => onClickEvent(s.value)}
+          key={`select_box_${s.value}`}
+        >
+          {s.label}
+        </button>
+      ))}
     </TalkBubble>
   );
 }

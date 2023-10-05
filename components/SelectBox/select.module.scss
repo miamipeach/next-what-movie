@@ -5,14 +5,15 @@
   text-align: center;
   padding: variables.$layout-default-padding / 2;
   display: block;
-  border:none;
+  border: none;
   background: variables.$button-bg-color;
   color: variables.$basic-color;
-  width:100%;
+  width: 100%;
   max-width: 50rem;
   border-radius: variables.$bubble-border-radius / 2;
+  cursor: pointer;
 }
 
-.selectButton + .selectButton{
-  margin-top:0.5rem;
+.selectButton + .selectButton {
+  margin-top: 0.5rem;
 }

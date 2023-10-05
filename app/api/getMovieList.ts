@@ -17,5 +17,7 @@ export async function getTodayMovieList(): Promise<Movie[]> {
   const res = await fetch(url);
   const result = (await res.json()) as TodayMovieList;
 
-  return result.boxOfficeResult.dailyBoxOfficeList;
+  return result.boxOfficeResult.dailyBoxOfficeList.sort((s1, s2) => {
+    return parseInt(s1.rank) - parseInt(s2.rank);
+  });
 }
