@@ -88,6 +88,7 @@ video {
     box-sizing: border-box;
     word-break: keep-all;
 }
+
 * {
     -webkit-overflow-scrolling: touch;
     -webkit-tap-highlight-color: transparent;
@@ -106,17 +107,20 @@ video {
     --mobile-app-download-banner-height: 60px;
     --header-search-keyword-height: 52px;
 }
+
 html,
 body {
     height: 100%;
     width: 100%;
 }
+
 body {
-    font-family: 'Pretendard', 'Pragmatica', 'Pragmatica-Extended', sans-serif, serif;
+    font-family: Pretendard, Pragmatica, Pragmatica-Extended, sans-serif, serif;
     font-size: 14px;
     font-weight: 400;
     color: #232323;
 }
+
 /* HTML5 display-role reset for older browsers */
 article,
 aside,
@@ -131,32 +135,39 @@ nav,
 section {
     display: block;
 }
+
 ol,
 ul {
     list-style: none;
 }
+
 blockquote,
 q {
     quotes: none;
 }
-blockquote:before,
-blockquote:after,
-q:before,
-q:after {
-    content: '';
+
+blockquote::before,
+blockquote::after,
+q::before,
+q::after {
     content: none;
 }
+
 table {
     width: 100%;
     border-collapse: collapse;
     border-spacing: 0;
 }
+
 strong {
     font-weight: 500;
 }
+
 em {
     font-style: normal;
 }
+
 a {
     text-decoration: none;
 }
+

@@ -1,5 +1,6 @@
+import React from 'react';
+
 export type TalkType = {
-  boxId: number;
   direction: string;
-  msg?: string;
+  msg?: string | React.ReactNode;
 };

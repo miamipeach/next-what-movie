@@ -1,9 +1,7 @@
 'use client';
-
 import { useQuery } from '@tanstack/react-query';
 import { getTodayMovieList } from '@/app/today/getMovieList';
 import SelectBox from '@components/SelectBox';
-import { TalkType } from '@/type/Talk';
 import { TalkAnimation } from '@/utils/talkAnimation';
 import TalkBubble from '@components/TalkBubble';
 
@@ -13,15 +11,22 @@ export default function TodayMovieSelect() {
     queryFn: getTodayMovieList,
   });
 
-  const talkBoxListInfo: TalkType = new TalkAnimation().getSceneListMsg(1);
+  const talkAni = new TalkAnimation();
 
-  const todayTalkInfo = { boxId: talkBoxListInfo.boxId + 1, direction: talkBoxListInfo.direction };
+  const prevTalkBoxCount: number = talkAni.getSceneMsgCount(1);
+  const preTalkDirection: string = talkAni.getSceneMsgDirection(1);
+
+  const todayTalkInfo = { boxId: prevTalkBoxCount, direction: preTalkDirection };
 
   if (isLoading) {
-    return <TalkBubble talkInfo={todayTalkInfo}>로딩중</TalkBubble>;
+    return (
+      <TalkBubble talkInfo={todayTalkInfo} index={prevTalkBoxCount}>
+        로딩중
+      </TalkBubble>
+    );
   }
 
   if (!movieList) return null;
 
-  return <SelectBox talkInfo={todayTalkInfo} selectInfo={movieList} />;
+  return <SelectBox talkInfo={todayTalkInfo} selectInfo={movieList} index={prevTalkBoxCount} />;
 }

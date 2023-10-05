@@ -10,8 +10,8 @@ export default function TalkBox({ sceneNumber }: IProps) {
 
   return (
     <>
-      {talkMsg.getSceneMsg(sceneNumber).map((talk) => (
-        <TalkBubble talkInfo={talk} key={`talk_scene_${talk.boxId}`} />
+      {talkMsg.getSceneMsg(sceneNumber).map((talk, index) => (
+        <TalkBubble talkInfo={talk} index={index} key={`talk_scene_${index}`} />
       ))}
     </>
   );

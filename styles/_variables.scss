@@ -5,7 +5,8 @@ $layout-default-padding: 2rem;
 $breakpoint-small-mobile: 380px;
 $bubble-bg-color: #ffc107;
 $button-bg-color: #f1f1f1;
-$bubble-border-radius : 2rem;
+$bubble-border-radius: 2rem;
+$intro-animation-delay-time: 3;
 
 @media (prefers-color-scheme: dark) {
   $basic-color: #fff;

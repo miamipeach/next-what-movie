@@ -1,27 +1,25 @@
-@use "variables";
-@use "mixin";
+@use 'variables';
+@use 'mixin';
 @use './reset.css';
 @use './font.css';
 
-
-html{
+html {
   font-size: 10px;
 }
 
-body{
+body {
   font-family: variables.$font-family;
   color: variables.$basic-color;
   background: variables.$body-bg-color;
 }
 
-#wrap{
+#wrap {
   width: 100%;
   max-width: 128rem;
-  margin:0 auto;
+  margin: 0 auto;
 }
 
-
-@include mixin.small-mobile{
+@include mixin.small-mobile {
   html {
     font-size: 8px;
   }

@@ -13,8 +13,6 @@
   background: variables.$basic-color;
 }
 
-$intro-animation-delay-time : 3;
-
 .phoneBox {
   @include mixin.position;
 
@@ -26,7 +24,7 @@ $intro-animation-delay-time : 3;
   margin: 0 auto;
   background: #f1f1f1;
   padding: 2rem;
-  overflow-x:hidden;
+  overflow-x: hidden;
 
   &::after {
     @extend %after-content;
@@ -55,7 +53,7 @@ $intro-animation-delay-time : 3;
   text-shadow: 2px 2px 2px gray;
   font-size: 5rem;
 
-  @include mixin.animation(display-none, #{$intro-animation-delay-time + 's'}, 0.1s);
+  @include mixin.animation(display-none, #{variables.$intro-animation-delay-time + 's'}, 0.1s);
 
   &::before {
     @extend %title-position;
@@ -84,6 +82,7 @@ $intro-animation-delay-time : 3;
 
 .talkLayout {
   @include mixin.flex;
+
   height: 100vh;
 }
 
@@ -92,14 +91,13 @@ $intro-animation-delay-time : 3;
   padding-top: 0.5rem;
 }
 
-.talkBubbleBoxLeft {
+.talkBoxLeft {
   @include mixin.flex(flex-start, flex-start, row);
-  @include mixin.animation(left-show, #{function.sceneAnimation()}s, 0.5s, linear, both );
 }
 
-.talkBubbleBoxRight {
+.talkBoxRight {
   @include mixin.flex(flex-start, flex-start, row);
-  @include mixin.animation(right-show, #{function.sceneAnimation()}s, 0.5s, linear, both);
+
   flex-flow: row-reverse;
 }
 
@@ -121,21 +119,26 @@ $intro-animation-delay-time : 3;
   margin-left: 1rem;
 }
 
-.talkBubbleBoxLeft + .talkBubbleBoxLeft{
-  .talker{
+.talkBoxLeft + .talkBoxLeft {
+  .talker {
     display: none;
   }
-  .talkBubbleLeft{
-    margin-left:5rem;
+
+  .talkBubbleLeft {
+    margin-left: 5rem;
   }
 }
 
-.firstScene{
-  $n : 5;
-
-  @for $i from 1 through $n{
-    .talkBubbleBox:nth-child(#{$i}){
-      animation-delay: 3s + (0.5 * $i);
-    }
+.talkBoxRight + .talkBoxRight {
+  .talker {
+    display: none;
   }
+
+  .talkBubbleLeft {
+    margin-right: 5rem;
+  }
+}
+
+:export {
+  introAnimationDelayTime: variables.$intro-animation-delay-time;
 }
