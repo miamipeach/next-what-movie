@@ -8,7 +8,7 @@ interface IProps {
   talkInfo: TalkType;
   selectInfo: Button[];
   index: number;
-  onClickEvent: (value: string) => Promise<void>;
+  onClickEvent: (value: string) => void;
 }
 
 export default function SelectBox({ talkInfo, selectInfo, index, onClickEvent }: IProps) {

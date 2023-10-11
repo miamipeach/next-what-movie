@@ -3,9 +3,9 @@ import SelectBox from '@components/SelectBox';
 import { TalkAnimation } from '@/utils/talkAnimation';
 import TalkBubble from '@components/TalkBubble';
 import { useTodayMovieList } from '@/app/talk/components/todayMovie/TodayMoviePreLoad';
-import { useQuery } from '@tanstack/react-query';
 import { getMovieDetail, useGetMovieDetail } from '@/app/api/getMovieDetail';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
+import { useQuery } from '@tanstack/react-query';
 
 export default function TodayMovieSelect() {
   const { list: movieList, isLoading } = useTodayMovieList();
@@ -15,21 +15,13 @@ export default function TodayMovieSelect() {
   const preTalkDirection: string = talkAni.getSceneMsgDirection(0);
 
   const todayTalkInfo = { direction: preTalkDirection };
-  const [selectMovieCd, setSelectMovieCd] = useState('');
+  const [movieCd, setMovieCd] = useState('');
 
-  const handleSelectMovie = async (value: string) => {
-    console.log('skp value', value);
-    setSelectMovieCd(value);
-    await refetch();
+  const handleSelectMovie = (value: string) => {
+    setMovieCd(value);
   };
 
-  const { status, data, error, isFetching, isPreviousData, refetch } = useGetMovieDetail({
-    movieCd: selectMovieCd,
-  });
-
-  useEffect(() => {
-    console.log('skp', { status, data, error, isFetching, isPreviousData });
-  }, [status, data, error, isFetching, isPreviousData]);
+  const { data } = useQuery(['get-movie-detail', movieCd], () => getMovieDetail(movieCd));
 
   if (isLoading) {
     return (
@@ -42,19 +34,13 @@ export default function TodayMovieSelect() {
   if (!movieList) return null;
 
   return (
-    <SelectBox
-      talkInfo={todayTalkInfo}
-      selectInfo={movieList}
-      index={prevTalkBoxCount}
-      onClickEvent={handleSelectMovie}
-    />
+    <>
+      <SelectBox
+        talkInfo={todayTalkInfo}
+        selectInfo={movieList}
+        index={prevTalkBoxCount}
+        onClickEvent={handleSelectMovie}
+      />
+    </>
   );
 }
-
-export const useSelectMovie = (movieCd: string) => {
-  return useQuery(['get-movie-detail'], () => getMovieDetail({ movieCd }), {
-    refetchOnWindowFocus: false,
-    enabled: false,
-    onSuccess: () => {},
-  });
-};
