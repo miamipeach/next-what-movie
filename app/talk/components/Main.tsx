@@ -1,16 +1,17 @@
 import styles from '@/app/talk/talk.module.scss';
 import TalkBox from '@/components/TalkBox';
-import { Suspense } from 'react';
 import TodayMoviePreLoad from '@/app/talk/components/todayMovie/TodayMoviePreLoad';
+import { TalkUtil } from '@/utils/talkUtil';
 
 export default function Main() {
+  const talkUtil = new TalkUtil();
+  const delayAniTime = parseInt(styles.introAnimationDelayTime, 10);
+
   return (
     <main className={styles.talkLayout}>
-      <section className={`${styles.phoneBox} ${styles.firstScene}`}>
-        <TalkBox sceneNumber={0} />
-        <Suspense fallback={<>loading</>}>
-          <TodayMoviePreLoad />
-        </Suspense>
+      <section className={`${styles.phoneBox}`}>
+        <TalkBox talkList={talkUtil.getSceneMsg(0)} delay={delayAniTime} />
+        <TodayMoviePreLoad delay={delayAniTime} />
       </section>
     </main>
   );

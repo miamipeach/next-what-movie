@@ -1,7 +1,7 @@
 import talkData from '../public/data/talk.json';
 import { TalkType } from '@/type/Talk';
 
-export class TalkAnimation {
+export class TalkUtil {
   private readonly talkData: TalkType[][] = [];
 
   constructor() {

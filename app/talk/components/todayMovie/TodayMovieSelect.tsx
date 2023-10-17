@@ -1,46 +1,69 @@
 'use client';
 import SelectBox from '@components/SelectBox';
-import { TalkAnimation } from '@/utils/talkAnimation';
+import { TalkUtil } from '@/utils/talkUtil';
 import TalkBubble from '@components/TalkBubble';
-import { useTodayMovieList } from '@/app/talk/components/todayMovie/TodayMoviePreLoad';
-import { getMovieDetail, useGetMovieDetail } from '@/app/api/getMovieDetail';
+import { getMovieDetail } from '@/app/api/getMovieDetail';
 import { useState } from 'react';
 import { useQuery } from '@tanstack/react-query';
+import { useTodayMovieList } from '@/app/api/getMovieList';
+import { TalkType } from '@/type/Talk';
+import TalkBox from '@components/TalkBox';
+import { useSelectMovie } from '@/app/recoil/selectMovie/useSelectMovie';
 
-export default function TodayMovieSelect() {
+interface ITodayMovieSelect {
+  delay: number;
+}
+
+export default function TodayMovieSelect({ delay }: ITodayMovieSelect) {
   const { list: movieList, isLoading } = useTodayMovieList();
+  const talkUtil = new TalkUtil();
+  const sceneNumber = 0;
 
-  const talkAni = new TalkAnimation();
-  const prevTalkBoxCount: number = talkAni.getSceneMsgCount(0);
-  const preTalkDirection: string = talkAni.getSceneMsgDirection(0);
+  const prevTalkBoxCount: number = talkUtil.getSceneMsgCount(sceneNumber);
+  const talkInfo = { direction: talkUtil.getSceneMsgDirection(sceneNumber) };
 
-  const todayTalkInfo = { direction: preTalkDirection };
-  const [movieCd, setMovieCd] = useState('');
+  const [movieCd, setMovieCd] = useState<string>('');
+  const [nextMsg, setNextMsg] = useState<TalkType[]>([]);
+  const { changeSelectMovie, getSelectMovieMsg } = useSelectMovie();
 
   const handleSelectMovie = (value: string) => {
     setMovieCd(value);
   };
 
-  const { data } = useQuery(['get-movie-detail', movieCd], () => getMovieDetail(movieCd));
-
-  if (isLoading) {
-    return (
-      <TalkBubble talkInfo={todayTalkInfo} index={prevTalkBoxCount}>
-        로딩중
-      </TalkBubble>
-    );
-  }
+  useQuery(['get-movie-detail', movieCd], () => getMovieDetail(movieCd), {
+    onSuccess: (data) => {
+      changeSelectMovie(data);
+      setNextMsg(getSelectMovieMsg());
+    },
+  });
 
   if (!movieList) return null;
 
   return (
     <>
-      <SelectBox
-        talkInfo={todayTalkInfo}
-        selectInfo={movieList}
-        index={prevTalkBoxCount}
-        onClickEvent={handleSelectMovie}
-      />
+      {isLoading ? (
+        <TalkBubble talkInfo={talkInfo} index={prevTalkBoxCount} delay={delay}>
+          로딩중
+        </TalkBubble>
+      ) : (
+        <SelectBox
+          talkInfo={talkInfo}
+          selectInfo={movieList}
+          index={prevTalkBoxCount}
+          onClickEvent={handleSelectMovie}
+          delay={delay}
+          disabled={movieCd !== ''}
+        />
+      )}
+      {nextMsg.length > 0 && <TalkBox talkList={nextMsg} />}
+      {nextMsg.length > 0 && (
+        <SelectBox
+          talkInfo={talkInfo}
+          selectInfo={movieList.filter((m) => m.value !== movieCd)}
+          index={nextMsg.length}
+          onClickEvent={handleSelectMovie}
+        />
+      )}
     </>
   );
 }

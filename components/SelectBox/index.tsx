@@ -9,17 +9,27 @@ interface IProps {
   selectInfo: Button[];
   index: number;
   onClickEvent: (value: string) => void;
+  delay?: number;
+  disabled?: boolean;
 }
 
-export default function SelectBox({ talkInfo, selectInfo, index, onClickEvent }: IProps) {
+export default function SelectBox({
+  talkInfo,
+  selectInfo,
+  index,
+  onClickEvent,
+  delay = 0,
+  disabled = false,
+}: IProps) {
   return (
-    <TalkBubble talkInfo={talkInfo} index={index}>
+    <TalkBubble talkInfo={talkInfo} index={index} delay={delay}>
       {selectInfo.map((s) => (
         <button
           value={`${s.value}`}
           className={styles.selectButton}
           onClick={() => onClickEvent(s.value)}
           key={`select_box_${s.value}`}
+          disabled={disabled}
         >
           {s.label}
         </button>

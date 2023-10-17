@@ -12,6 +12,12 @@
   max-width: 50rem;
   border-radius: variables.$bubble-border-radius / 2;
   cursor: pointer;
+
+  &:disabled {
+    color: rgba(variables.$basic-color, 50%);
+    background: rgba(variables.$body-bg-color, 70%);
+    cursor: default;
+  }
 }
 
 .selectButton + .selectButton {

@@ -1,5 +1,7 @@
 import { Movie } from '@/type/Movie';
 import { getYesterdayDate } from '@/utils/common';
+import { useQuery } from '@tanstack/react-query';
+import { Button } from '@/type/Button';
 
 interface TodayMovieList {
   boxOfficeResult: {
@@ -7,7 +9,7 @@ interface TodayMovieList {
   };
 }
 
-export async function getTodayMovieList(): Promise<Movie[]> {
+export const getTodayMovieList = async (): Promise<Movie[]> => {
   const url = `${
     process.env.NEXT_PUBLIC_API_BASE_URL as string
   }boxoffice/searchDailyBoxOfficeList.json?key=${
@@ -20,4 +22,12 @@ export async function getTodayMovieList(): Promise<Movie[]> {
   return result.boxOfficeResult.dailyBoxOfficeList.sort((s1, s2) => {
     return parseInt(s1.rank) - parseInt(s2.rank);
   });
-}
+};
+
+export const useTodayMovieList = () => {
+  const { data, isLoading } = useQuery(['get-today-movie'], getTodayMovieList);
+
+  const list: Button[] = data?.map((d: Movie) => ({ value: d.movieCd, label: d.movieNm })) || [];
+
+  return { list, isLoading };
+};

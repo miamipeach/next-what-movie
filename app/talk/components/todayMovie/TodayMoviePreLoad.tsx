@@ -1,12 +1,14 @@
 import getQueryClient from '@/utils/getQueryClient';
 import { getTodayMovieList } from '@/app/api/getMovieList';
-import { dehydrate, Hydrate, useQuery } from '@tanstack/react-query';
+import { dehydrate, Hydrate } from '@tanstack/react-query';
 import React from 'react';
 import TodayMovieSelect from '@/app/talk/components/todayMovie/TodayMovieSelect';
-import { Button } from '@/type/Button';
-import { Movie } from '@/type/Movie';
 
-export default async function TodayMoviePreLoad() {
+interface ITodayMoviePreLoad {
+  delay: number;
+}
+
+export default async function TodayMoviePreLoad({ delay }: ITodayMoviePreLoad) {
   const queryClient = getQueryClient();
   await queryClient.prefetchQuery({
     queryKey: ['get-today-movie'],
@@ -19,15 +21,7 @@ export default async function TodayMoviePreLoad() {
 
   return (
     <Hydrate state={dehydratedState}>
-      <TodayMovieSelect />
+      <TodayMovieSelect delay={delay} />
     </Hydrate>
   );
-}
-
-export function useTodayMovieList() {
-  const { data, isLoading } = useQuery(['get-today-movie'], getTodayMovieList);
-
-  const list: Button[] = data?.map((d: Movie) => ({ value: d.movieCd, label: d.movieNm })) || [];
-
-  return { list, isLoading };
 }

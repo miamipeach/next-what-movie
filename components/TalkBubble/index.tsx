@@ -8,10 +8,11 @@ interface IProps {
   talkInfo: TalkType;
   children?: React.ReactNode;
   index: number;
+  delay?: number;
 }
 
-export default function TalkBubble({ talkInfo, children, index }: IProps) {
-  const headerAnimationTime = useMemo(() => parseInt(styles.introAnimationDelayTime, 10), []);
+export default function TalkBubble({ talkInfo, children, index, delay }: IProps) {
+  const headerAnimationTime = useMemo(() => delay || 0, []);
 
   const container = {
     hidden: { opacity: 0, x: talkInfo.direction === 'left' ? -100 : 100 },
