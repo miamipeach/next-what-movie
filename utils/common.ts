@@ -9,3 +9,12 @@ export function getYesterdayDate() {
 
   return `${year}${month}${day}`;
 }
+
+export function ScrollDownPhoneBox(height: number) {
+  const scrollTarget = document.querySelector('#phoneBox');
+  if (!scrollTarget) return;
+  console.log('skp height', height);
+
+  if (scrollTarget.scrollHeight > height) return;
+  scrollTarget.scrollTo({ behavior: 'smooth', top: height });
+}

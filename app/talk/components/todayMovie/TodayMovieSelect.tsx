@@ -56,14 +56,6 @@ export default function TodayMovieSelect({ delay }: ITodayMovieSelect) {
         />
       )}
       {nextMsg.length > 0 && <TalkBox talkList={nextMsg} />}
-      {nextMsg.length > 0 && (
-        <SelectBox
-          talkInfo={talkInfo}
-          selectInfo={movieList.filter((m) => m.value !== movieCd)}
-          index={nextMsg.length}
-          onClickEvent={handleSelectMovie}
-        />
-      )}
     </>
   );
 }

@@ -1,7 +1,7 @@
 import styles from '@/app/talk/talk.module.scss';
 import TalkBox from '@/components/TalkBox';
-import TodayMoviePreLoad from '@/app/talk/components/todayMovie/TodayMoviePreLoad';
 import { TalkUtil } from '@/utils/talkUtil';
+import TodayMoviePreLoad from '@/app/talk/components/todayMovie/TodayMoviePreLoad';
 
 export default function Main() {
   const talkUtil = new TalkUtil();
@@ -9,7 +9,7 @@ export default function Main() {
 
   return (
     <main className={styles.talkLayout}>
-      <section className={`${styles.phoneBox}`}>
+      <section className={`${styles.phoneBox}`} id={`phoneBox`}>
         <TalkBox talkList={talkUtil.getSceneMsg(0)} delay={delayAniTime} />
         <TodayMoviePreLoad delay={delayAniTime} />
       </section>

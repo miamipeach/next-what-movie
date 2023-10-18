@@ -93,12 +93,15 @@
 
 .talkBoxLeft {
   @include mixin.flex(flex-start, flex-start, row);
+
+  opacity: 0;
 }
 
 .talkBoxRight {
   @include mixin.flex(flex-start, flex-start, row);
 
   flex-flow: row-reverse;
+  opacity: 0;
 }
 
 .talkBubbleBox + .talkBubbleBox {
